@@ -5,24 +5,51 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default {
+
+  myChain: [],
+
   getLength() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+    return this.myChain.length;
+
   },
-  addLink(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  
+  addLink(value) {
+
+    this.myChain.push('( ' + String(value) + ' )');
+    return this;
+
   },
-  removeLink(/* position */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  removeLink(position) {
+
+    if ( typeof (position) === 'number' && Number.isInteger(position) === true ) {
+
+      if (0 < position && position <= this.myChain.length) {
+
+        this.myChain.splice(position - 1, 1);
+        return this;
+
+      };
+    };
+      
+    this.myChain = [];
+    throw Error("You can't remove incorrect link!");
+
   },
+
   reverseChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+    this.myChain.reverse();
+    return this;
+
   },
+
   finishChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+    let finishedChain = this.myChain.join('~~');
+    this.myChain = [];
+    return finishedChain;
+
   }
 };
